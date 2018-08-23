@@ -122,21 +122,21 @@ def main():
 
 				response.append(j) # the response output
 			    except Exception as e:
-					if str(e).find('S_FALSE') < 0:
+					if unicode(e).find('S_FALSE') < 0:
 					    raise
 					else:
 					    break
 
 			iEnum.RemRelease()
 		except Exception as e:
-		    print "An error occured: " + str(e)
+		    print "An error occured: " + unicode(e)
 
 		iWbemServices.RemRelease()
 		dcom.disconnect()
 
 		# What to do with the results ?
 		if options.action == 'get':
-			print str(response[0][options.fields])
+			print unicode(response[0][options.fields])
 		elif options.action == 'bulk':
 			send2zabbix(response, key, options.target, options.sender, options.server)
 		elif options.action == 'json':
@@ -150,7 +150,7 @@ def main():
 			print "Invalid action."
 			exit(1)
 	except Exception as e:
-		print "An error occured: " + str(e)
+		print "An error occured: " + unicode(e)
 		try:
 			dcom.disconnect()
 		except:
@@ -162,17 +162,19 @@ def discovery_json(data):
 	Display a JSON-formatted index for Zabbix LLD discovery
 
 	"""
+        import json
 
 	output = []
 
 	for eachItem in data:
-		res = []
+		res = {}
 		for k in eachItem:
 			key = '{#WMI.' + k.upper() + '}'
-			res.append('"' + key + '": "' + str(eachItem[k]) + '"')
-		output.append('{' + ', '.join(res) + '}')
+			res[key] = unicode(eachItem[k])
+		output.append(res)
 
-	print '{ "data": [', ', '.join(output), '] }'
+	jsondata = { "data": output }
+	print json.dumps(jsondata)
 
 def send2zabbix_json(data):
 
@@ -186,10 +188,11 @@ def send2zabbix_json(data):
 	for eachItem in data:
 		res = []
 		for k in eachItem:
-			res.append('"' + k + '": "' + str(eachItem[k]) + '"')
+			res.append('"' + k + '": "' + unicode(eachItem[k]) + '"')
 		output.append('{' + ', '.join(res) + '}')
 
-	print "[" + ','.join(output) + "]"
+        strjson = "[" + ','.join(output) + "]"
+	print strjson.encode("utf-8")
 
 
 def send2zabbix(data, key, host, sender, server):
@@ -202,9 +205,9 @@ def send2zabbix(data, key, host, sender, server):
 	# Contruct the input for zabbix_sender
 	output = ""
 	for eachItem in data:
-		val = "[" + str(eachItem.pop(key)) + "] "
+		val = "[" + unicode(eachItem.pop(key)) + "] "
 		for k in eachItem:
-			output += host + " " + k + val + str(eachItem[k]) + "\n"
+			output += host + " " + k + val + unicode(eachItem[k]) + "\n"
 
 	# Send the values to the server
 	import subprocess
@@ -213,9 +216,9 @@ def send2zabbix(data, key, host, sender, server):
 
 	try:
 		p = subprocess.Popen([sender, '-r', '-z', server, '-i', '-'], stdin=subprocess.PIPE, stdout=f, stderr=f)
-		p.communicate(output)
+		p.communicate(output.encode('utf-8'))
 	except Exception as e:
-		print "An error occured with zabbix_sender. " + str(e)
+		print "An error occured with zabbix_sender. " + unicode(e)
 		exit(1)
 
 if __name__ == '__main__':
