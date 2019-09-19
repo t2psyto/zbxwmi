@@ -19,6 +19,7 @@ def main():
 	parser.add_argument('-namespace', action='store', default='//./root/cimv2', help='namespace name (default //./root/cimv2)')
 
 	parser.add_argument('-key', action='store', help='Key')
+	parser.add_argument('-enumdiscover', default=None, action='store', help='append enumerate index when discover')
 	parser.add_argument('-fields', action='store', help='Field list delimited by comma')
 	parser.add_argument('-filter', action='store', default='', help='Filter')
 	parser.add_argument('-item', action='store', default='', help='Selected item')
@@ -142,7 +143,7 @@ def main():
 		elif options.action == 'json':
 			send2zabbix_json(response)
 		elif options.action == 'discover':
-			discovery_json(response)
+			discovery_json(response, enums=options.enumdiscover)
 		elif options.action == 'both': # Discover + bulk
 			send2zabbix(response, key, options.target, options.sender, options.server)
 			discovery_json(response)
@@ -156,7 +157,7 @@ def main():
 		except:
 			pass
 
-def discovery_json(data):
+def discovery_json(data, enums=None):
 
 	"""
 	Display a JSON-formatted index for Zabbix LLD discovery
@@ -166,11 +167,16 @@ def discovery_json(data):
 
 	output = []
 
-	for eachItem in data:
+	for i, eachItem in enumerate(data):
 		res = {}
 		for k in eachItem:
 			key = '{#WMI.' + k.upper() + '}'
 			res[key] = unicode(eachItem[k])
+
+		if enums != None:
+			key = '{#WMI.' + enums + '}'
+			res[key] = unicode(i)
+
 		output.append(res)
 
 	jsondata = { "data": output }
