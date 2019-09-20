@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
-    <version>3.4</version>
-    <date>2019-09-20T09:00:00Z</date>
+    <version>4.2</version>
+    <date>2019-09-20T10:26:51Z</date>
     <groups>
         <group>
             <name>Templates/Operating Systems</name>
@@ -9,8 +9,8 @@
     </groups>
     <templates>
         <template>
-            <template>Template OS Windows WMI 2</template>
-            <name>Template OS Windows WMI 2</name>
+            <template>Template_OS_Windows_WMI_2</template>
+            <name>Template_OS_Windows_WMI_2</name>
             <description/>
             <groups>
                 <group>
@@ -20,6 +20,9 @@
             <applications>
                 <application>
                     <name>CPU</name>
+                </application>
+                <application>
+                    <name>JSON</name>
                 </application>
                 <application>
                     <name>Memory</name>
@@ -32,6 +35,154 @@
                 </application>
             </applications>
             <items>
+                <item>
+                    <name>Read / sec</name>
+                    <type>18</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>DiskReadsPersec</key>
+                    <delay>0</delay>
+                    <history>90d</history>
+                    <trends>365d</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Storage</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                    <preprocessing>
+                        <step>
+                            <type>12</type>
+                            <params>$[0].DiskReadsPersec</params>
+                            <error_handler>0</error_handler>
+                            <error_handler_params/>
+                        </step>
+                        <step>
+                            <type>9</type>
+                            <params/>
+                            <error_handler>0</error_handler>
+                            <error_handler_params/>
+                        </step>
+                    </preprocessing>
+                    <jmx_endpoint/>
+                    <timeout>3s</timeout>
+                    <url/>
+                    <query_fields/>
+                    <posts/>
+                    <status_codes>200</status_codes>
+                    <follow_redirects>1</follow_redirects>
+                    <post_type>0</post_type>
+                    <http_proxy/>
+                    <headers/>
+                    <retrieve_mode>0</retrieve_mode>
+                    <request_method>0</request_method>
+                    <output_format>0</output_format>
+                    <allow_traps>0</allow_traps>
+                    <ssl_cert_file/>
+                    <ssl_key_file/>
+                    <ssl_key_password/>
+                    <verify_peer>0</verify_peer>
+                    <verify_host>0</verify_host>
+                    <master_item>
+                        <key>zbxwmi[&quot;-action&quot;,&quot;json&quot;,&quot;-fields&quot;,&quot;DiskWritesPersec,DiskWriteBytesPersec,DiskReadsPersec,DiskReadBytesPersec&quot;,&quot;-filter&quot;,&quot;Name='_Total'&quot;,&quot;Win32_PerfRawData_PerfDisk_LogicalDisk&quot;,&quot;{$WMI_AUTHFILE}&quot;,{HOST.HOST}]</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Writes / sec</name>
+                    <type>18</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>DiskWritesPersec</key>
+                    <delay>0</delay>
+                    <history>90d</history>
+                    <trends>365d</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Storage</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                    <preprocessing>
+                        <step>
+                            <type>12</type>
+                            <params>$[0].DiskWritesPersec</params>
+                            <error_handler>0</error_handler>
+                            <error_handler_params/>
+                        </step>
+                        <step>
+                            <type>9</type>
+                            <params/>
+                            <error_handler>0</error_handler>
+                            <error_handler_params/>
+                        </step>
+                    </preprocessing>
+                    <jmx_endpoint/>
+                    <timeout>3s</timeout>
+                    <url/>
+                    <query_fields/>
+                    <posts/>
+                    <status_codes>200</status_codes>
+                    <follow_redirects>1</follow_redirects>
+                    <post_type>0</post_type>
+                    <http_proxy/>
+                    <headers/>
+                    <retrieve_mode>0</retrieve_mode>
+                    <request_method>0</request_method>
+                    <output_format>0</output_format>
+                    <allow_traps>0</allow_traps>
+                    <ssl_cert_file/>
+                    <ssl_key_file/>
+                    <ssl_key_password/>
+                    <verify_peer>0</verify_peer>
+                    <verify_host>0</verify_host>
+                    <master_item>
+                        <key>zbxwmi[&quot;-action&quot;,&quot;json&quot;,&quot;-fields&quot;,&quot;DiskWritesPersec,DiskWriteBytesPersec,DiskReadsPersec,DiskReadBytesPersec&quot;,&quot;-filter&quot;,&quot;Name='_Total'&quot;,&quot;Win32_PerfRawData_PerfDisk_LogicalDisk&quot;,&quot;{$WMI_AUTHFILE}&quot;,{HOST.HOST}]</key>
+                    </master_item>
+                </item>
                 <item>
                     <name>FreePhysicalMemory</name>
                     <type>18</type>
@@ -329,12 +480,130 @@
                     </master_item>
                 </item>
                 <item>
+                    <name>Disk I/O</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>zbxwmi[&quot;-action&quot;,&quot;json&quot;,&quot;-fields&quot;,&quot;DiskWritesPersec,DiskWriteBytesPersec,DiskReadsPersec,DiskReadBytesPersec&quot;,&quot;-filter&quot;,&quot;Name='_Total'&quot;,&quot;Win32_PerfRawData_PerfDisk_LogicalDisk&quot;,&quot;{$WMI_AUTHFILE}&quot;,{HOST.HOST}]</key>
+                    <delay>5m</delay>
+                    <history>3600</history>
+                    <trends>0</trends>
+                    <status>0</status>
+                    <value_type>4</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Storage</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                    <preprocessing/>
+                    <jmx_endpoint/>
+                    <timeout>3s</timeout>
+                    <url/>
+                    <query_fields/>
+                    <posts/>
+                    <status_codes>200</status_codes>
+                    <follow_redirects>1</follow_redirects>
+                    <post_type>0</post_type>
+                    <http_proxy/>
+                    <headers/>
+                    <retrieve_mode>0</retrieve_mode>
+                    <request_method>0</request_method>
+                    <output_format>0</output_format>
+                    <allow_traps>0</allow_traps>
+                    <ssl_cert_file/>
+                    <ssl_key_file/>
+                    <ssl_key_password/>
+                    <verify_peer>0</verify_peer>
+                    <verify_host>0</verify_host>
+                    <master_item/>
+                </item>
+                <item>
+                    <name>Processors</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>zbxwmi[&quot;-action&quot;,&quot;json&quot;,&quot;-fields&quot;,&quot;PercentProcessorTime&quot;,&quot;-filter&quot;,&quot;Name&lt;&gt;'_Total'&quot;,&quot;Win32_PerfFormattedData_PerfOS_Processor&quot;,&quot;{$WMI_AUTHFILE}&quot;,{HOST.HOST}]</key>
+                    <delay>5m</delay>
+                    <history>3600</history>
+                    <trends>0</trends>
+                    <status>0</status>
+                    <value_type>4</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>WMI</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                    <preprocessing/>
+                    <jmx_endpoint/>
+                    <timeout>3s</timeout>
+                    <url/>
+                    <query_fields/>
+                    <posts/>
+                    <status_codes>200</status_codes>
+                    <follow_redirects>1</follow_redirects>
+                    <post_type>0</post_type>
+                    <http_proxy/>
+                    <headers/>
+                    <retrieve_mode>0</retrieve_mode>
+                    <request_method>0</request_method>
+                    <output_format>0</output_format>
+                    <allow_traps>0</allow_traps>
+                    <ssl_cert_file/>
+                    <ssl_key_file/>
+                    <ssl_key_password/>
+                    <verify_peer>0</verify_peer>
+                    <verify_host>0</verify_host>
+                    <master_item/>
+                </item>
+                <item>
                     <name>CPU_json</name>
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>zbxwmi[&quot;-action&quot;,&quot;json&quot;,&quot;-fields&quot;,&quot;PercentProcessorTime&quot;,&quot;Win32_PerfFormattedData_PerfOS_Processor&quot;,{$WMI_AUTHFILE},{HOST.HOST}]</key>
-                    <delay>1h</delay>
+                    <delay>30m</delay>
                     <history>90d</history>
                     <trends>0</trends>
                     <status>0</status>
@@ -360,7 +629,10 @@
                     <inventory_link>0</inventory_link>
                     <applications>
                         <application>
-                            <name>CPU</name>
+                            <name>JSON</name>
+                        </application>
+                        <application>
+                            <name>WMI</name>
                         </application>
                     </applications>
                     <valuemap/>
@@ -386,15 +658,76 @@
                     <verify_peer>0</verify_peer>
                     <verify_host>0</verify_host>
                     <master_item/>
-                    <interface_ref>if1</interface_ref>
                 </item>
                 <item>
-                    <name>memory_json</name>
+                    <name>DRIVE_json</name>
+                    <type>10</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>zbxwmi[&quot;-action&quot;,&quot;json&quot;,&quot;-k&quot;,&quot;DeviceID&quot;,&quot;-fields&quot;,&quot;VolumeName,FreeSpace,Size&quot;,&quot;-item&quot;,&quot;C:&quot;,&quot;Win32_LogicalDisk&quot;,&quot;{$WMI_AUTHFILE}&quot;,&quot;{HOST.HOST}&quot;]</key>
+                    <delay>30m</delay>
+                    <history>90d</history>
+                    <trends>0</trends>
+                    <status>0</status>
+                    <value_type>4</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description/>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>JSON</name>
+                        </application>
+                        <application>
+                            <name>WMI</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                    <preprocessing/>
+                    <jmx_endpoint/>
+                    <timeout>3s</timeout>
+                    <url/>
+                    <query_fields/>
+                    <posts/>
+                    <status_codes>200</status_codes>
+                    <follow_redirects>1</follow_redirects>
+                    <post_type>0</post_type>
+                    <http_proxy/>
+                    <headers/>
+                    <retrieve_mode>0</retrieve_mode>
+                    <request_method>0</request_method>
+                    <output_format>0</output_format>
+                    <allow_traps>0</allow_traps>
+                    <ssl_cert_file/>
+                    <ssl_key_file/>
+                    <ssl_key_password/>
+                    <verify_peer>0</verify_peer>
+                    <verify_host>0</verify_host>
+                    <master_item/>
+                </item>
+                <item>
+                    <name>MEMORY_json</name>
                     <type>10</type>
                     <snmp_community/>
                     <snmp_oid/>
                     <key>zbxwmi[&quot;-action&quot;,&quot;json&quot;,&quot;-k&quot;,&quot;TotalVirtualMemorySize,TotalVisibleMemorySize,FreeVirtualMemory,FreePhysicalMemory&quot;,&quot;Win32_OperatingSystem&quot;,{$WMI_AUTHFILE},{HOST.HOST}]</key>
-                    <delay>1h</delay>
+                    <delay>30m</delay>
                     <history>90d</history>
                     <trends>0</trends>
                     <status>0</status>
@@ -420,7 +753,10 @@
                     <inventory_link>0</inventory_link>
                     <applications>
                         <application>
-                            <name>Memory</name>
+                            <name>JSON</name>
+                        </application>
+                        <application>
+                            <name>WMI</name>
                         </application>
                     </applications>
                     <valuemap/>
@@ -446,7 +782,6 @@
                     <verify_peer>0</verify_peer>
                     <verify_host>0</verify_host>
                     <master_item/>
-                    <interface_ref>if1</interface_ref>
                 </item>
             </items>
             <discovery_rules>
@@ -580,7 +915,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template OS Windows WMI 2</host>
+                                        <host>Template_OS_Windows_WMI_2</host>
                                         <key>cpu.discoverd[{#WMI.NAME}]</key>
                                     </item>
                                 </graph_item>
@@ -608,7 +943,6 @@
                     <verify_host>0</verify_host>
                     <lld_macro_paths/>
                     <preprocessing/>
-                    <interface_ref>if1</interface_ref>
                     <master_item/>
                 </discovery_rule>
                 <discovery_rule>
@@ -640,8 +974,8 @@
                         <formula/>
                         <conditions/>
                     </filter>
-                    <lifetime>7d</lifetime>
-                    <description>Find local disk drive</description>
+                    <lifetime>30d</lifetime>
+                    <description/>
                     <item_prototypes>
                         <item_prototype>
                             <name>Free Space {#WMI.DEVICEID}</name>
@@ -673,7 +1007,11 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications/>
+                            <applications>
+                                <application>
+                                    <name>Storage</name>
+                                </application>
+                            </applications>
                             <valuemap/>
                             <logtimefmt/>
                             <preprocessing>
@@ -779,7 +1117,7 @@
                             <snmp_community/>
                             <snmp_oid/>
                             <key>drive.discoverd.used[{#WMI.DEVICEID}]</key>
-                            <delay>1h</delay>
+                            <delay>30m</delay>
                             <history>90d</history>
                             <trends>365d</trends>
                             <status>0</status>
@@ -803,7 +1141,11 @@
                             <port/>
                             <description/>
                             <inventory_link>0</inventory_link>
-                            <applications/>
+                            <applications>
+                                <application>
+                                    <name>Storage</name>
+                                </application>
+                            </applications>
                             <valuemap/>
                             <logtimefmt/>
                             <preprocessing/>
@@ -901,7 +1243,7 @@
                     </item_prototypes>
                     <trigger_prototypes>
                         <trigger_prototype>
-                            <expression>{Template OS Windows WMI 2:drive.discoverd.freespace[{#WMI.DEVICEID}].avg(7200)}&lt;2147483648</expression>
+                            <expression>{Template_OS_Windows_WMI_2:drive.discoverd.freespace[{#WMI.DEVICEID}].avg(#7200)}&lt;2147483648</expression>
                             <recovery_mode>0</recovery_mode>
                             <recovery_expression/>
                             <name>Low disk_space</name>
@@ -912,7 +1254,7 @@
                             <priority>2</priority>
                             <description/>
                             <type>0</type>
-                            <manual_close>1</manual_close>
+                            <manual_close>0</manual_close>
                             <dependencies/>
                             <tags/>
                         </trigger_prototype>
@@ -935,19 +1277,19 @@
                             <ymax_type_1>2</ymax_type_1>
                             <ymin_item_1>0</ymin_item_1>
                             <ymax_item_1>
-                                <host>Template OS Windows WMI 2</host>
+                                <host>Template_OS_Windows_WMI_2</host>
                                 <key>drive.discoverd.size[{#WMI.DEVICEID}]</key>
                             </ymax_item_1>
                             <graph_items>
                                 <graph_item>
                                     <sortorder>0</sortorder>
                                     <drawtype>0</drawtype>
-                                    <color>FFFFFF</color>
+                                    <color>FFEBEE</color>
                                     <yaxisside>0</yaxisside>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template OS Windows WMI 2</host>
+                                        <host>Template_OS_Windows_WMI_2</host>
                                         <key>drive.discoverd.size[{#WMI.DEVICEID}]</key>
                                     </item>
                                 </graph_item>
@@ -959,7 +1301,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template OS Windows WMI 2</host>
+                                        <host>Template_OS_Windows_WMI_2</host>
                                         <key>drive.discoverd.used[{#WMI.DEVICEID}]</key>
                                     </item>
                                 </graph_item>
@@ -971,7 +1313,7 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template OS Windows WMI 2</host>
+                                        <host>Template_OS_Windows_WMI_2</host>
                                         <key>drive.discoverd.freespace[{#WMI.DEVICEID}]</key>
                                     </item>
                                 </graph_item>
@@ -999,7 +1341,6 @@
                     <verify_host>0</verify_host>
                     <lld_macro_paths/>
                     <preprocessing/>
-                    <interface_ref>if1</interface_ref>
                     <master_item/>
                 </discovery_rule>
             </discovery_rules>
@@ -1012,6 +1353,7 @@
             </macros>
             <templates/>
             <screens/>
+            <tags/>
         </template>
     </templates>
     <graphs>
@@ -1041,7 +1383,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Windows WMI</host>
+                        <host>Template_OS_Windows_WMI_2</host>
                         <key>DiskReadsPersec</key>
                     </item>
                 </graph_item>
@@ -1053,7 +1395,7 @@
                     <calc_fnc>2</calc_fnc>
                     <type>0</type>
                     <item>
-                        <host>Template OS Windows WMI</host>
+                        <host>Template_OS_Windows_WMI_2</host>
                         <key>DiskWritesPersec</key>
                     </item>
                 </graph_item>
